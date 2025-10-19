@@ -21,7 +21,7 @@ jobs:
           java-version: '17'
 
       - name: Build with Maven
-        working-directory: ./onlinebookstore
+        working-directory: ./online-bookstore/onlinebookstore
         run: mvn clean package -DskipTests
 
       - name: Log in to Docker Hub
@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/book-backend:latest ./onlinebookstore
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/book-backend:latest ./online-bookstore/onlinebookstore
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/book-backend:latest
